@@ -71,6 +71,35 @@ public class MorningSong extends JFrame {
         submitBtn.setBackground(new Color(70, 130, 180));
         submitBtn.setForeground(Color.WHITE);
 
+        submitBtn.addActionListener(e -> {
+            String s1 = songField.getText();
+            String s2 = singerField.getText();
+
+            if (s1.equals("") || s2.equals("")) {
+                JOptionPane.showMessageDialog(null, "모든 칸을 입력해주세요.");
+                return;
+            }
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dorm_db", "root", "Dldlgkwns@12");
+                String sql = "insert into morningsong (songName, singerName) value(?, ?);";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+
+                pstmt.setString(1, s1);
+                pstmt.setString(2, s2);
+                pstmt.executeUpdate();
+                JOptionPane.showMessageDialog(null, "신청 완료!");
+
+                dispose();
+                new MorningSong();
+
+            } catch (SQLException | ClassNotFoundException E){
+                System.out.println("DB 연결 오류");
+                E.printStackTrace();
+            }
+        });
+
         rightPanel.add(rightTitle);
         rightPanel.add(Box.createVerticalStrut(20));
         rightPanel.add(singerLabel);
