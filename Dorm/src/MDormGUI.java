@@ -19,6 +19,7 @@ class RoundPanel extends JPanel {
 }
 
 public class MDormGUI extends JFrame {
+    private Image mirimLogo;
     MDormGUI(){
         setTitle("MirimDorm");
         setSize(720, 480);
@@ -27,10 +28,16 @@ public class MDormGUI extends JFrame {
         setResizable(false);
         setLayout(new BorderLayout());
 
+        mirimLogo = new ImageIcon(MDormGUI.class.getResource("../images/mirimLogo.svg")).getImage();
+        BackgroundPanel bp = new BackgroundPanel();
+        bp.setLayout(null);
+        setContentPane(bp);
+
         // 1. 상단 바 설정
         JPanel topBar = new JPanel(null);
         topBar.setPreferredSize(new Dimension(720, 80));
         topBar.setBackground(Color.WHITE);
+
 
         // 타이틀에 라운드 적용: RoundPanel 안에 JLabel을 넣는 방식
         RoundPanel titleBox = new RoundPanel(20);
@@ -72,6 +79,14 @@ public class MDormGUI extends JFrame {
         add(wrapper, BorderLayout.CENTER);
 
         setVisible(true);
+    }
+
+    class BackgroundPanel extends JPanel {
+        @Override
+        public void paintComponent(Graphics g) {        // 배경을 그릴 때 자동으로 불러지는 대표적인 함수
+            super.paintComponent(g); // Swing 기본 컴포넌트 렌더링
+            g.drawImage(mirimLogo, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 
     public static void main(String[] args) {
