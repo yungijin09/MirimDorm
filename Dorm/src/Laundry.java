@@ -53,6 +53,20 @@ public class Laundry extends JFrame {
                     }
                 }
         );
+        JPanel bottom = new JPanel();
+        bottom.setSize(60, 40);
+        JButton backBtn = new JButton("home");
+        backBtn.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        dispose();
+                        new MDormGUI();
+                    }
+                }
+        );
+        bottom.add(backBtn);
+        add(bottom, BorderLayout.SOUTH);
 
         add(inputPanel, BorderLayout.NORTH);
         inputPanel.add(inputInfo);
@@ -80,7 +94,7 @@ public class Laundry extends JFrame {
                 name = rs.getString("name");
                 grade = rs.getString("grade");
                 reserve = rs.getString("reserve");
-                String info = room + "호 | "  + name + " | " + grade + "학년 | " + reserve;
+                String info = room + "호 | " + name + " | " + grade + "학년 | " + reserve;
                 laundryBox.add(new JLabel(info, SwingConstants.CENTER));
             }
 
