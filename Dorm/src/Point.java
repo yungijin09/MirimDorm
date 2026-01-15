@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class Point extends JFrame{
@@ -19,7 +21,7 @@ public class Point extends JFrame{
         setVisible(true);
     }
 
-    public static void pointInfo(){
+    public void pointInfo(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dorm_db", "root", "Dldlgkwns@12");
@@ -37,6 +39,19 @@ public class Point extends JFrame{
             System.out.println("DB 연결 오류");
             e.printStackTrace();
         }
+
+        JPanel bottom = new JPanel();
+        bottom.setSize(60, 40);
+        JButton homeBtn = new JButton("Home");
+
+        homeBtn.addActionListener(e -> {
+            dispose();
+            new MDormGUI();
+        });
+
+        bottom.add(homeBtn);
+        add(bottom, BorderLayout.SOUTH);
+
     }
 
     static void main() {
