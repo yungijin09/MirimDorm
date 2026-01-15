@@ -32,7 +32,7 @@ public class MDorm {
                 Time comebackTime = rs.getTime("comebackTime");
                 boolean returnT = rs.getBoolean("returnT");
                 String flag = "미복귀";
-                if(returnT) flag = "복귀";
+                if (returnT) flag = "복귀";
 
                 System.out.println(roomNum + "호 " + name + " " + comebackTime + " " + flag);
             }
@@ -168,7 +168,7 @@ public class MDorm {
             switch (num) {
                 case "1" -> {
                     System.out.println("호실 | 이름 | 복귀 시간(예: HH:MM:SS) | 복귀 여부(true, false)");
-                    inputComebackTime(sc.next(), sc.next() , Time.valueOf(sc.next()), sc.hasNextBoolean());
+                    inputComebackTime(sc.next(), sc.next(), Time.valueOf(sc.next()), sc.hasNextBoolean());
                 }
 
                 case "2" -> {
