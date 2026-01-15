@@ -53,7 +53,20 @@ public class Comeback extends JFrame {
                     }
                 }
         );
-
+        JPanel bottom = new JPanel();
+        bottom.setSize(60,40);
+        JButton backBtn = new JButton("home");
+        backBtn.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        dispose();
+                        new MDormGUI();
+                    }
+                }
+        );
+        bottom.add(backBtn);
+        add(bottom, BorderLayout.SOUTH);
         // 프레임의 NORTH(상단)에 배치
         add(inputPanel, BorderLayout.NORTH);
         inputPanel.add(inputInfo);
