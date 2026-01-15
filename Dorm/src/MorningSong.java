@@ -69,7 +69,6 @@ public class MorningSong extends JFrame {
         submitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         submitBtn.setFont(new Font("맑은 고딕", Font.BOLD, 13));
         submitBtn.setBackground(new Color(70, 130, 180));
-        submitBtn.setForeground(Color.WHITE);
 
         submitBtn.addActionListener(e -> {
             String s1 = songField.getText();
@@ -100,6 +99,16 @@ public class MorningSong extends JFrame {
             }
         });
 
+        JButton homeBtn = new JButton("Home");
+        homeBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        homeBtn.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+        homeBtn.setBackground(new Color(70, 130, 180));
+
+        homeBtn.addActionListener(e -> {
+            dispose();
+            new MDormGUI();
+        });
+
         rightPanel.add(rightTitle);
         rightPanel.add(Box.createVerticalStrut(20));
         rightPanel.add(singerLabel);
@@ -111,6 +120,8 @@ public class MorningSong extends JFrame {
         rightPanel.add(songField);
         rightPanel.add(Box.createVerticalStrut(20));
         rightPanel.add(submitBtn);
+        rightPanel.add(Box.createVerticalStrut(20));
+        rightPanel.add(homeBtn);
 
         add(leftPanel);
         add(rightPanel);
