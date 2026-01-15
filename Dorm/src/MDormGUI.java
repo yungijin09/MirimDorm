@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 // 둥근 패널 클래스 (작성하신 것 유지)
@@ -28,16 +29,10 @@ public class MDormGUI extends JFrame {
         setResizable(false);
         setLayout(new BorderLayout());
 
-        mirimLogo = new ImageIcon(MDormGUI.class.getResource("../images/mirimLogo.svg")).getImage();
-        BackgroundPanel bp = new BackgroundPanel();
-        bp.setLayout(null);
-        setContentPane(bp);
-
+        mirimLogo = new ImageIcon(MDormGUI.class.getResource("images/mirimLogo.png")).getImage();
         // 1. 상단 바 설정
         JPanel topBar = new JPanel(null);
         topBar.setPreferredSize(new Dimension(720, 80));
-        topBar.setBackground(Color.WHITE);
-
 
         // 타이틀에 라운드 적용: RoundPanel 안에 JLabel을 넣는 방식
         RoundPanel titleBox = new RoundPanel(20);
@@ -55,10 +50,29 @@ public class MDormGUI extends JFrame {
 
         // 2. 중앙 영역 설정
         JPanel wrapper = new JPanel(new GridBagLayout());
+        wrapper.setOpaque(false);
         wrapper.setBackground(Color.WHITE);
 
         // 메뉴 박스에 라운드 적용
-        RoundPanel menuBox = new RoundPanel(40); // 모서리를 40만큼 둥글게
+        RoundPanel menuBox = new RoundPanel(40) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                // 부모의 paintComponent 호출 (둥근 배경 그리기)
+                super.paintComponent(g);
+
+                Graphics2D g2d = (Graphics2D) g.create();
+                // 로고 투명도 설정 (0.1f ~ 0.2f 추천)
+                g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.15f));
+
+                // 메뉴 박스 내부에서의 로고 크기 및 위치 (중앙)
+                int size = 200;
+                int x = (getWidth() - size) / 2;
+                int y = (getHeight() - size) / 2;
+
+                g2d.drawImage(mirimLogo, x, y, size, size, this);
+                g2d.dispose();
+            }
+        };
         menuBox.setBackground(new Color(245, 245, 245)); // 약간 회색빛 흰색
         menuBox.setPreferredSize(new Dimension(500, 270));
         menuBox.setLayout(null); // 내부 자유 배치를 위해 null
