@@ -5,10 +5,12 @@ import java.awt.*;
 // 둥근 패널 클래스 (작성하신 것 유지)
 class RoundPanel extends JPanel {
     private int radius;
+
     public RoundPanel(int radius) {
         this.radius = radius;
         setOpaque(false);
     }
+
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
@@ -21,7 +23,8 @@ class RoundPanel extends JPanel {
 
 public class MDormGUI extends JFrame {
     private Image mirimLogo;
-    MDormGUI(){
+
+    MDormGUI() {
         setTitle("MirimDorm");
         setSize(720, 480);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -76,6 +79,40 @@ public class MDormGUI extends JFrame {
         menuBox.setBackground(new Color(245, 245, 245)); // 약간 회색빛 흰색
         menuBox.setPreferredSize(new Dimension(500, 270));
         menuBox.setLayout(null); // 내부 자유 배치를 위해 null
+        JPanel btnPanel = new JPanel(new GridLayout(2, 2, 50, 50));
+        btnPanel.setBounds(100, 80, 300, 140);
+        btnPanel.setOpaque(false);
+        JButton[] menuBtn = new JButton[4];
+        String[] menuText = {"복귀 현황", "빨래 예약", "기상송 예약", "상벌점 현황"};
+        for (int i = 0; i < menuBtn.length; i++) {
+            menuBtn[i] = new JButton(menuText[i]);
+            menuBtn[i].setFont(new Font("맑은 고딕", Font.BOLD, 13));
+            menuBtn[i].setBackground(Color.WHITE);
+            btnPanel.add(menuBtn[i]);
+        }
+        menuBtn[0].addActionListener(e ->{
+            dispose();
+            new Comeback();
+        });
+        menuBtn[1].addActionListener(
+                e -> {
+                    dispose();
+                    new Laundry();
+                }
+        );
+        menuBtn[2].addActionListener(
+                e->{
+                    dispose();
+                    new MorningSong();
+                }
+        );
+        menuBtn[3].addActionListener(
+                e -> {
+                    dispose();
+                    new Point();
+                }
+        );
+        menuBox.add(btnPanel);
 
         JLabel menuTitle = new JLabel("Menu", SwingConstants.CENTER);
         menuTitle.setForeground(Color.BLACK);
