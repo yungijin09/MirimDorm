@@ -40,7 +40,10 @@ public class Comeback extends JFrame {
                         String roomNum = stk.nextToken();
                         String name = stk.nextToken();
                         Time combackTime = Time.valueOf(stk.nextToken());
-                        boolean returnT = Boolean.parseBoolean(stk.nextToken());
+                        String flag = stk.nextToken();
+                        boolean returnT = false;
+                        if(flag.equals("복귀"))
+                            returnT = true;
 
                         inputComebackTime(roomNum, name, combackTime, returnT);
 
