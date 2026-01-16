@@ -25,11 +25,11 @@ public class Comeback extends JFrame {
         add(new JScrollPane(wrap), BorderLayout.CENTER);
 
         JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        JLabel inputInfo = new JLabel("호실 | 이름 | 복귀 시간 | 복귀 여부 : ");
+        JLabel inputInfo = new JLabel("호실 | 이름 | 복귀 시간 | 복귀 여부 (Y/N): ");
         inputInfo.setFont(new Font("맑은 고딕", Font.BOLD, 12));
 
         // JTextField(글자수)를 지정해야 빈 칸일 때도 모양이 유지됩니다.
-        JTextField input = new JTextField(18);
+        JTextField input = new JTextField(14);
         JButton save = new JButton("저장");
         save.addActionListener(
                 new ActionListener() {
@@ -39,10 +39,10 @@ public class Comeback extends JFrame {
                         StringTokenizer stk = new StringTokenizer(content, " ");
                         String roomNum = stk.nextToken();
                         String name = stk.nextToken();
-                        Time combackTime = Time.valueOf(stk.nextToken());
+                        Time combackTime = Time.valueOf(stk.nextToken() + ":00");
                         String flag = stk.nextToken();
                         boolean returnT = false;
-                        if(flag.equals("복귀"))
+                        if(flag.equals("Y"))
                             returnT = true;
 
                         inputComebackTime(roomNum, name, combackTime, returnT);
