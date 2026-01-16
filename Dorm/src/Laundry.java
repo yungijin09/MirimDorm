@@ -55,7 +55,7 @@ public class Laundry extends JFrame {
         );
         JPanel bottom = new JPanel();
         bottom.setSize(60, 40);
-        JButton backBtn = new JButton("home");
+        JButton backBtn = new JButton("Home");
         backBtn.addActionListener(
                 new ActionListener() {
                     @Override
@@ -84,7 +84,7 @@ public class Laundry extends JFrame {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dorm_db", "root", "Kwon092021!");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dorm_db", "root", "Dldlgkwns@12");
             String sql = "select roomNum, name, grade, reserve from laundrytbl";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
@@ -108,7 +108,7 @@ public class Laundry extends JFrame {
     public static void reserveLaundry(String roomNum, String name, String grade, Time reserve) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dorm_db", "root", "Kwon092021!");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dorm_db", "root", "Dldlgkwns@12");
             String sql = "insert into laundrytbl (roomNum, name, grade, reserve) values (?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, roomNum);

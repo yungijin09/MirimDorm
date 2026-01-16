@@ -32,7 +32,7 @@ public class Point extends JFrame{
             while(rs.next()){
                 String name = rs.getString("name");
                 int point = rs.getInt("point");
-                String info = "이름: " + name + ", " + "벌점: " + point;
+                String info = "이름: " + name + " | " + " " + point;
                 pointBox.add(new JLabel(info, SwingConstants.CENTER));
             }
         } catch (ClassNotFoundException | SQLException e){

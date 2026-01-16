@@ -83,7 +83,7 @@ public class MDormGUI extends JFrame {
         btnPanel.setBounds(100, 80, 300, 140);
         btnPanel.setOpaque(false);
         JButton[] menuBtn = new JButton[4];
-        String[] menuText = {"복귀 현황", "빨래 예약", "기상송 예약", "상벌점 현황"};
+        String[] menuText = {"복귀 현황", "빨래 예약", "기상송 신청", "상벌점 현황"};
         for (int i = 0; i < menuBtn.length; i++) {
             menuBtn[i] = new JButton(menuText[i]);
             menuBtn[i].setFont(new Font("맑은 고딕", Font.BOLD, 13));

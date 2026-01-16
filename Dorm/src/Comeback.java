@@ -55,7 +55,7 @@ public class Comeback extends JFrame {
         );
         JPanel bottom = new JPanel();
         bottom.setSize(60,40);
-        JButton backBtn = new JButton("home");
+        JButton backBtn = new JButton("Home");
         backBtn.addActionListener(
                 new ActionListener() {
                     @Override
